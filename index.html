@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Imc Cálculo</h1>
+        <div class="menu">
+            <input id="altura" class="input" type="text" placeholder="Altura"/>
+            <input id="peso" class="input" type="text" placeholder="Peso"/>
+        </div>
+
+        <div class="button"><button type="button" onclick="calcularIMC()">Calcular IMC</button> <!--onclick puxa diretamente da Tag--></div>
+
+        <div class="resultado">
+            <p id="resultadoIMC"></p>
+        </div>
+    </div>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content:center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        #container{
+            height: 26vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 7.5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+        }
+
+        h1{
+            margin-top: 15px;
+            font-size: 3rem;
+            color: #1d2129;
+        }
+
+        .menu{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin: 15px;
+        }
+
+        .input{
+            height: 5vh;
+            border-radius: 5px;
+            font-size: 1rem;
+            padding-left: 2vh;
+            text-align: start;
+            color: #1d2129;
+            border-width: 2px;
+            border: 1px solid #dddfe2;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+        }
+
+        button{
+            font-size: 1.2rem;
+            height: 5.5vh;
+            background-color: #1a1a1a;
+            padding-left: 4.75vw;
+            padding-right: 4.75vw;
+            color: white;
+            font-weight: 700;
+            border: 0px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .resultado{
+            margin-top: 15px;
+        }
+    </style>
+
+    <script>
+        function calcularIMC(){
+            const altura = document.querySelector('#altura');
+            const peso = document.querySelector('#peso');
+
+            var imc = (peso.value / (altura.value*altura.value))
+
+            var classification;
+
+            if (imc < 17){
+                classification = 'Muito Abaixo do Peso.'
+            }
+            else if(imc >= 17 && imc < 18.99){
+                classification = 'Abaixo do Peso.'
+            }
+            else if(imc >= 19 && imc < 24.99){
+                classification = 'Peso Normal.'
+            }
+            else if(imc >= 25 && imc <29.99){
+                classification = 'Acima do Peso.'
+            }
+            else if(imc > 30){
+                classification = 'Obeso.'
+            }
+
+            var resposta = classification
+            document.getElementById('resultadoIMC').innerHTML = resposta
+        }
+    </script>
+</body>
+</html>
